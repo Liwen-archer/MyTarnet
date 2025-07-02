@@ -13,3 +13,5 @@ This is the official PyTorch implementation of the KDD 2022 paper [TARNet : Task
 [TARNET](https://github.com/ranakroychowdhury/TARNet.git)
 
 ### 项目目录
+
+`transformer.py` transformer 编码器模块，先构建单个 TransformerEncoderLayer 模块，然后堆叠 N 个编码器模块组成 TransformerEncoder 模块

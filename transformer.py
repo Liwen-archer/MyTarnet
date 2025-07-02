@@ -40,7 +40,7 @@ class TransformerEncoderLayer(nn.Module):
         src2, attn = self.self_attn(src, src, src, attn_mask=src_mask, key_padding_mask=src_key_padding_mask)
         src = src + self.dropout1(src2)
         sec = self.norm1(src)
-        src2 = self.linear1(self.dropout(self.activation(self.linear1(src))))
+        src2 = self.linear2(self.dropout(self.activation(self.linear1(src))))
         src = src + self.dropout2(src2)
         src = self.norm2(src)
         return src, attn
@@ -59,7 +59,7 @@ class TransformerEncoder(nn.Module):
         
         
     def forward(self, src, mask=None, src_key_padding_mask=None):
-        out = src
+        output = src
         attn_output = torch.zeros((src.shape[1], src.shape[0], src.shape[0]), device=self.device)
         
         for mod in self.layers:
