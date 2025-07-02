@@ -15,3 +15,4 @@ This is the official PyTorch implementation of the KDD 2022 paper [TARNet : Task
 ### 项目目录
 
 `transformer.py` transformer 编码器模块，先构建单个 TransformerEncoderLayer 模块，然后堆叠 N 个编码器模块组成 TransformerEncoder 模块
+`multitask_transformer_class.py` transformer 分类器的核心模块，包括位置编码模块**PositionalEncoding**，与分类模块**MultitaskTransformerModel**
