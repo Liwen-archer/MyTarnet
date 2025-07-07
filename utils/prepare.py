@@ -2,7 +2,7 @@ import torch
 import numpy as np
 import random, math
 
-from ..models.multitask_transformer_class import MultitaskTransformerModel
+from models.multitask_transformer_class import MultitaskTransformerModel
 
 
 def initialize_training(prop):

@@ -2,7 +2,7 @@ import math, torch
 import numpy as np
 from sklearn.metrics import precision_score, recall_score, f1_score, accuracy_score
 
-from prepare import compute_tar_loss, compute_task_loss, random_instance_masking
+from .prepare import compute_tar_loss, compute_task_loss, random_instance_masking
 
 def multitask_train(model, criterion_tar, criterion_task, optimizer, X_train_tar, X_train_task, y_train_tar_masked, y_train_tar_unmasked, \
                     y_train_task, boolean_indices_masked, boolean_indices_unmasked, prop):
