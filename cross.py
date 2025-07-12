@@ -65,7 +65,6 @@ def main():
 
 if __name__ == '__main__':
     dataset = args.dataset
-    if dataset == 'cross':
-        for i in range(1, 5):
-            args.dataset = f'./data/cross_{i}'
-            main()
+    for i in range(1, 5):
+        args.dataset = f'./data/{dataset}/cross_{i}'
+        main()
