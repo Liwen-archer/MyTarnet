@@ -2,6 +2,7 @@ import utils
 import argparse
 import warnings
 import torch
+import logging
 warnings.filterwarnings("ignore")
 
 parser = argparse.ArgumentParser()
@@ -28,6 +29,7 @@ args = parser.parse_args()
 
 def main():
     prop = utils.get_prop(args)
+    
 
     print('Data loading start...')
     X_train, y_train, X_test, y_test = utils.data_loader(
@@ -59,4 +61,8 @@ def main():
 
 
 if __name__ == '__main__':
-    main()
+    dataset = args.dataset
+    if dataset == 'cross':
+        for i in range(1, 5):
+            args.dataset = f'./data/cross_{i}'
+            main()

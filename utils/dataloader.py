@@ -12,11 +12,11 @@ def data_loader(dataset, task_type):
     X_train = np.load(x_train_path, allow_pickle = True).astype(np.float64)
     X_test = np.load(x_test_path, allow_pickle = True).astype(np.float64)
     if task_type == 'classification':
-        y_train = np.load(os.path.join(dataset, 'y_train.npy'), allow_pickle = True)
-        y_test = np.load(os.path.join(dataset, 'y_test.npy'), allow_pickle = True)
+        y_train = np.load(os.path.join(dataset, 'y_train.npy'), allow_pickle = True).astype(np.int64)
+        y_test = np.load(os.path.join(dataset, 'y_test.npy'), allow_pickle = True).astype(np.int64)
     else:
-        y_train = np.load(os.path.join(dataset, 'y_train.npy'), allow_pickle = True).as_tensor(np.float64)
-        y_test = np.load(os.path.join(dataset, 'y_test.npy'), allow_pickle = True).as_tensor(np.float64)
+        y_train = np.load(os.path.join(dataset, 'y_train.npy'), allow_pickle = True).astype(np.float64)
+        y_test = np.load(os.path.join(dataset, 'y_test.npy'), allow_pickle = True).astype(np.float64)
     return X_train, y_train, X_test, y_test
 
 
