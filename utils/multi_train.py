@@ -193,7 +193,7 @@ def test_model(model, criterion_task, X_test, y_test, prop):
     if prop['task_type'] == 'classification':
         loss, acc, prec, rec, f1 = test_metrics
         print('Test: ' + prop['dataset'], ', Loss: ' + str(loss), ', Acc: ' + str(acc), ', Prec: ' + str(prec), ', Rec: ' + str(rec), ', F1: ' + str(f1))
-        logging.info(f"Test {prop['dataset']}: {acc}, {prec}, {rec}, {f1}")
+        logging.info(f"Test {prop['dataset']}, {acc}, {prec}, {rec}, {f1}")
     elif prop['task_type'] == 'regression':
         rmse, mae = test_metrics
         print('Dataset: ' + prop['dataset'] + ', RMSE: ' + str(rmse) + ', MAE: ' + str(mae))
