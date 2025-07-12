@@ -4,6 +4,10 @@ from sklearn.metrics import precision_score, recall_score, f1_score, accuracy_sc
 
 from .prepare import compute_tar_loss, compute_task_loss, random_instance_masking
 
+import logging
+
+logging.basicConfig(filename='result.csv', filemode='a', level=logging.INFO)
+
 def multitask_train(model, criterion_tar, criterion_task, optimizer, X_train_tar, X_train_task, y_train_tar_masked, y_train_tar_unmasked, \
                     y_train_task, boolean_indices_masked, boolean_indices_unmasked, prop):
     
@@ -191,6 +195,7 @@ def test_model(model, criterion_task, X_test, y_test, prop):
     if prop['task_type'] == 'classification':
         loss, acc, prec, rec, f1 = test_metrics
         print('Dataset: ' + prop['dataset'], ', Loss: ' + str(loss), ', Acc: ' + str(acc), ', Prec: ' + str(prec), ', Rec: ' + str(rec), ', F1: ' + str(f1))
+        logging.critical(f"Test {prop['dataset']}: {acc}, {prec}, {rec}, {f1}")
     elif prop['task_type'] == 'regression':
         rmse, mae = test_metrics
         print('Dataset: ' + prop['dataset'] + ', RMSE: ' + str(rmse) + ', MAE: ' + str(mae))

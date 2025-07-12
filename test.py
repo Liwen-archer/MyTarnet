@@ -51,9 +51,9 @@ def main():
     model.load_state_dict(torch.load('./weights/best_model.pt'))
     print('Model intialized...')
     
-    print('Training start...')
+    print('Test start...')
     utils.test_model(model,  criterion_task, X_test, y_test, prop)
-    print('Training complete...')
+    print('Test complete...')
 
 
 if __name__ == '__main__':
