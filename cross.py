@@ -26,6 +26,9 @@ parser.add_argument('--task_type', type=str,
                     default='classification', help='[classification, regression]')
 args = parser.parse_args()
 
+logging.basicConfig(filename='result.csv', filemode='a', level=logging.INFO)
+logging.info('dataset, accuracy, precision, recall, f1')
+
 
 def main():
     prop = utils.get_prop(args)
