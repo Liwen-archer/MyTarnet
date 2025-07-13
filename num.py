@@ -2,6 +2,7 @@ import utils
 import argparse
 import warnings
 import torch
+import logging
 warnings.filterwarnings("ignore")
 
 parser = argparse.ArgumentParser()
@@ -24,6 +25,9 @@ parser.add_argument('--nhid_tar', type=int, default=128)
 parser.add_argument('--task_type', type=str,
                     default='classification', help='[classification, regression]')
 args = parser.parse_args()
+
+logging.basicConfig(filename='result.csv', filemode='a', level=logging.INFO)
+logging.info('dataset, accuracy, precision, recall, f1')
 
 
 def main():
