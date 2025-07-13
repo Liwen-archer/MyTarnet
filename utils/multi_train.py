@@ -1,7 +1,7 @@
 import math, torch
 import numpy as np
 from sklearn.metrics import precision_score, recall_score, f1_score, accuracy_score
-
+import matplotlib.pyplot as plt
 from .prepare import compute_tar_loss, compute_task_loss, random_instance_masking
 
 import logging
@@ -163,7 +163,7 @@ def train_model(model, optimizer, criterion_tar, criterion_task, best_model, bes
         tar_loss = tar_loss_masked + tar_loss_unmasked
         tar_loss_arr.append(tar_loss)
         task_loss_arr.append(task_loss)
-        print('Epoch: ' + str(epoch) + ', TAR Loss: ' + str(tar_loss), ', TASK Loss: ' + str(task_loss))
+        # print('Epoch: ' + str(epoch) + ', TAR Loss: ' + str(tar_loss), ', TASK Loss: ' + str(task_loss))
 
         # save model and optimizer for lowest training loss on the end task
         if task_loss < min_task_loss:
@@ -171,6 +171,7 @@ def train_model(model, optimizer, criterion_tar, criterion_task, best_model, bes
             best_model.load_state_dict(model.state_dict())
             best_optimizer.load_state_dict(optimizer.state_dict())
     
+    plot_loss(task_loss_arr)
     # Saved best model state at the lowest training loss is evaluated on the official test set
     test_metrics = test(best_model, X_train_task, y_train_task, prop['batch'], prop['nclasses'], criterion_task, prop['task_type'], prop['device'], prop['avg'])
     torch.save(best_model.state_dict(), './weights/best_model.pt')
@@ -201,3 +202,12 @@ def test_model(model, criterion_task, X_test, y_test, prop):
 
     del model
     torch.cuda.empty_cache()
+    
+    
+def plot_loss(losses):
+    length = len(losses)
+    x = np.arange(1, length+1)
+    y = np.array(losses)
+    plt.plot(x, y)
+    plt.savefig('loss')
+    

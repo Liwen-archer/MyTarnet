@@ -60,7 +60,7 @@ def main():
     utils.train_model(model, optimizer, criterion_tar, criterion_task, best_model, best_optimizer, X_train_task, y_train_task, X_test, y_test, prop)
     print('Training complete...')
     
-    utils.test_model(model,  criterion_task, X_test, y_test, prop)
+    utils.test_model(best_model,  criterion_task, X_test, y_test, prop)
 
 
 if __name__ == '__main__':
